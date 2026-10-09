@@ -16,7 +16,6 @@ class_name Pet
 @onready var anim_player = $AnimationPlayer
 @onready var sprite = $Sprite2D
 @onready var petDebugLabel = $PetDebugLabel
-@onready var death = $Death
 # ==========================================
 # VARIABLES & SETTINGS
 # ==========================================
@@ -182,3 +181,12 @@ func walk_out_of_scene():
 	# Wait for the slide to finish.
 	await tween.finished
 	state = PetState.IDLE
+	
+func die():
+	if state == PetState.DEAD:
+		return
+
+	state = PetState.DEAD
+	var guest_manager = get_parent().get_node_or_null("GuestPetManager")
+	if guest_manager:
+		guest_manager.pet_died()

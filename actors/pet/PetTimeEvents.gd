@@ -123,7 +123,8 @@ func process_time_events(_day, _hour, minute):
 
 		if death_timer >= DEATH_DELAY:
 			death_timer = 0.0
-			pet.death.die()
+			pet.die()
 			return
 	else:
 		death_timer = 0.0
+		

@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://b87tewjdjhde7" path="res://source/actors/pet/PetActions.gd" id="5_hjdxb"]
 [ext_resource type="FontFile" uid="uid://bto7agdrkocgn" path="res://assets/fonts/PixeloidSans.ttf" id="5_q3mnx"]
 [ext_resource type="Script" uid="uid://bbykjqt1r8eue" path="res://source/actors/pet/PetTimeEvents.gd" id="6_0rhmh"]
-[ext_resource type="Script" uid="uid://dsmgqelrk0idx" path="res://source/actors/pet/PetDeath.gd" id="7_sbsjg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkmqf"]
 size = Vector2(94, 96)
@@ -94,6 +93,3 @@ offset_right = 40.0
 offset_bottom = -68.0
 theme_override_fonts/font = ExtResource("5_q3mnx")
 text = "Pet Debug"
-
-[node name="Death" type="Node" parent="." unique_id=2015612792]
-script = ExtResource("7_sbsjg")
