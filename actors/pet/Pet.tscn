@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://r1srkhptyee1"]
+
+[ext_resource type="Script" uid="uid://cv1jjjksbhmg" path="res://source/actors/pet/pet.gd" id="1_mp1so"]
+[ext_resource type="Script" uid="uid://la0wypul2g84" path="res://source/actors/ShakeTween.gd" id="3_00fq3"]
+[ext_resource type="Script" uid="uid://bfyh44i3onahw" path="res://source/actors/pet/PetStats.gd" id="4_mmn7c"]
+[ext_resource type="Script" uid="uid://b87tewjdjhde7" path="res://source/actors/pet/PetActions.gd" id="5_hjdxb"]
+[ext_resource type="FontFile" uid="uid://bto7agdrkocgn" path="res://assets/fonts/PixeloidSans.ttf" id="5_q3mnx"]
+[ext_resource type="Script" uid="uid://bbykjqt1r8eue" path="res://source/actors/pet/PetTimeEvents.gd" id="6_0rhmh"]
+[ext_resource type="Script" uid="uid://dsmgqelrk0idx" path="res://source/actors/pet/PetDeath.gd" id="7_sbsjg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tkmqf"]
+size = Vector2(94, 96)
+
+[sub_resource type="Animation" id="Animation_p1d6a"]
+resource_name = "Eating"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0872665, 0.0, 0.0872665, 0.0, 0.0872665, 0.0, 0.0872665, 0.0, 0.0872665, 0.0, 0.0872665, 0.0, 0.0872665, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_tbwsd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_js4yl"]
+_data = {
+&"Eating": SubResource("Animation_p1d6a"),
+&"RESET": SubResource("Animation_tbwsd")
+}
+
+[node name="Pet" type="CharacterBody2D" unique_id=852635182 groups=["Pet"]]
+collision_layer = 0
+script = ExtResource("1_mp1so")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=322358789]
+position = Vector2(-0.999969, -2)
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1535213040]
+position = Vector2(-2, -2)
+shape = SubResource("RectangleShape2D_tkmqf")
+
+[node name="ShakeTween" type="Node" parent="." unique_id=1564317112]
+script = ExtResource("3_00fq3")
+
+[node name="PetStats" type="Node" parent="." unique_id=1666143945]
+script = ExtResource("4_mmn7c")
+
+[node name="PetActions" type="Node" parent="." unique_id=70943440]
+script = ExtResource("5_hjdxb")
+
+[node name="PetTimeEvents" type="Node" parent="." unique_id=1679964537]
+script = ExtResource("6_0rhmh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=725809158]
+libraries/ = SubResource("AnimationLibrary_js4yl")
+
+[node name="PetDebugLabel" type="Label" parent="." unique_id=514270952]
+offset_left = -40.0
+offset_top = -91.0
+offset_right = 40.0
+offset_bottom = -68.0
+theme_override_fonts/font = ExtResource("5_q3mnx")
+text = "Pet Debug"
+
+[node name="Death" type="Node" parent="." unique_id=2015612792]
+script = ExtResource("7_sbsjg")
